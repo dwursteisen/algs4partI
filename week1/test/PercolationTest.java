@@ -1,12 +1,12 @@
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
-
 import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Created by david.wursteisen on 26/08/13.
@@ -64,7 +64,7 @@ public class PercolationTest {
     @Test
     public void should_get_neightboors() {
         List<Integer> neightBoors = percolation.getNeightBoors(1, 1);
-        assertThat(neightBoors).contains(0, 2, 6, 7);
+        assertThat(neightBoors).containsOnly(0, 2, 6);
     }
 
     @Test

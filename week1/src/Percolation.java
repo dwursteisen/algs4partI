@@ -74,7 +74,7 @@ public class Percolation {
 
         if (j <= 0) {
             return INVALID_INDEX;
-        } else if (j >= gridSize) {
+        } else if (j > gridSize) {
             return INVALID_INDEX;
         }
 
@@ -83,16 +83,12 @@ public class Percolation {
 
     public List<Integer> getNeightBoors(final int i, final int j) {
         LinkedHashSet<Integer> set = new LinkedHashSet<Integer>();
-        set.add(getGroupsIndex(i - 1, j - 1));
         set.add(getGroupsIndex(i - 1, j));
-        set.add(getGroupsIndex(i - 1, j + 1));
 
         set.add(getGroupsIndex(i, j - 1));
         set.add(getGroupsIndex(i, j + 1));
 
-        set.add(getGroupsIndex(i + 1, j - 1));
         set.add(getGroupsIndex(i + 1, j));
-        set.add(getGroupsIndex(i + 1, j + 1));
 
         set.remove(INVALID_INDEX);
         return new ArrayList<Integer>(set);
