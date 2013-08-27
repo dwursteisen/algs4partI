@@ -1,5 +1,3 @@
-import java.util.List;
-
 import org.junit.Before;
 import org.junit.Test;
 
@@ -63,8 +61,8 @@ public class PercolationTest {
 
     @Test
     public void should_get_neightboors() {
-        List<Integer> neightBoors = percolation.getNeightBoors(1, 1);
-        assertThat(neightBoors).containsOnly(0, 2, 6);
+        int[] neightBoors = percolation.getNeightBoors(1, 1);
+        assertThat(neightBoors).containsOnly(0, -1, 2, 6);
     }
 
     @Test

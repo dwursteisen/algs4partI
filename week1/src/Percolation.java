@@ -1,13 +1,8 @@
-import java.util.ArrayList;
-import java.util.LinkedHashSet;
-import java.util.List;
-
 /**
  * Created by david.wursteisen on 26/08/13.
  */
 public class Percolation {
     public static final int INVALID_INDEX = -1;
-
     private final int gridSize;
     private final boolean[] sites;
     private final WeightedQuickUnionUF engine;
@@ -25,8 +20,11 @@ public class Percolation {
     public void open(int i, int j) {
         checkCoordinatesAreValid(i, j);
         sites[getGroupsIndex(i, j)] = true;
-        List<Integer> neightBoors = getNeightBoors(i, j);
-        for (Integer neightBoor : neightBoors) {
+        int[] neightBoors = getNeightBoors(i, j);
+        for (int neightBoor : neightBoors) {
+            if (neightBoor == INVALID_INDEX) {
+                continue;
+            }
             if (this.sites[neightBoor]) {
                 engine.union(getGroupsIndex(i, j), neightBoor);
             }
@@ -70,17 +68,14 @@ public class Percolation {
         return i + gridSize * (j - 1);
     }
 
-    public List<Integer> getNeightBoors(final int i, final int j) {
-        LinkedHashSet<Integer> set = new LinkedHashSet<Integer>();
-        set.add(getGroupsIndex(i - 1, j));
-
-        set.add(getGroupsIndex(i, j - 1));
-        set.add(getGroupsIndex(i, j + 1));
-
-        set.add(getGroupsIndex(i + 1, j));
-
-        set.remove(INVALID_INDEX);
-        return new ArrayList<Integer>(set);
+    public int[] getNeightBoors(final int i, final int j) {
+        int[] neightboors = new int[4];
+        neightboors[0] = getGroupsIndex(i - 1, j);
+        neightboors[1] = getGroupsIndex(i, j - 1);
+        neightboors[2] = getGroupsIndex(i, j + 1);
+        neightboors[3] = getGroupsIndex(i + 1, j);
+        return neightboors;
 
     }
+
 }
