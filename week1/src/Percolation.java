@@ -18,7 +18,7 @@ public class Percolation {
         this.numberOfSites = (gridSize * gridSize) + 2;
         this.sites = new boolean[numberOfSites];
         this.sites[0] = true; // top site
-        this.sites[sites.length - 1] = true; // bottom site
+        this.sites[numberOfSites - 1] = true; // bottom site
         this.engine = new WeightedQuickUnionUF(numberOfSites);
     }
 
@@ -48,36 +48,25 @@ public class Percolation {
     }
 
     private void checkCoordinatesAreValid(final int i, final int j) {
-        isValidIndex(i);
-        isValidIndex(j);
+        if (!isValidIndex(i) || !isValidIndex(j)) {
+            throw new IndexOutOfBoundsException();
+        }
     }
 
-    private void isValidIndex(final int index) {
-        if (index > gridSize) {
-            throw new IndexOutOfBoundsException();
-        }
-        if (index <= 0) {
-            throw new IndexOutOfBoundsException();
-        }
+    private boolean isValidIndex(final int index) {
+        return (index > 0) && (index <= gridSize);
     }
 
     int getGroupsIndex(final int i, final int j) {
         if (i == 0) {
             return 0;
-        } else if (i < 0) {
-            return INVALID_INDEX;
         } else if (i == gridSize + 1) {
             return (gridSize * gridSize) + 1;
-        } else if (i > gridSize + 1) {
-            return INVALID_INDEX;
         }
 
-        if (j <= 0) {
-            return INVALID_INDEX;
-        } else if (j > gridSize) {
+        if (!isValidIndex(i) || !(isValidIndex(j))) {
             return INVALID_INDEX;
         }
-
         return i + gridSize * (j - 1);
     }
 
