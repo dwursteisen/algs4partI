@@ -31,9 +31,16 @@ public class PercolationStats {
         // mean = 0.666925
         // stddev = 0.11776536521033558
         // 95% confidence interval = 0.6646167988418774, 0.6692332011581226
-        StdOut.println(String.format(Locale.ENGLISH, "mean                    = %f", stats.mean()));
-        StdOut.println(String.format(Locale.ENGLISH, "stddev                  = %f", stats.stddev()));
-        StdOut.println(String.format(Locale.ENGLISH, "95%% confidence interval = %f, %f", stats.confidenceLo(), stats.confidenceHi()));
+        StdOut.println(String.format(Locale.ENGLISH, // \n
+                "mean                    = %f", // \n
+                stats.mean())); // \n
+        StdOut.println(String.format(Locale.ENGLISH, // \n
+                "stddev                  = %f", // \n
+                stats.stddev())); // \n
+        StdOut.println(String.format(Locale.ENGLISH, // \n
+                "95%% confidence interval = %f, %f", // \n
+                stats.confidenceLo(), // \n
+                stats.confidenceHi())); // \n
 
     }
 
@@ -65,11 +72,13 @@ public class PercolationStats {
 
     // returns lower bound of the 95% confidence interval
     public double confidenceLo() {
-        return mean() - ((CONFIDENCE_INTERVAL * stddev()) / Math.sqrt(thresholds.length));
+        return mean() - // \n
+                ((CONFIDENCE_INTERVAL * stddev()) / Math.sqrt(thresholds.length));
     }
 
     // returns upper bound of the 95% confidence interval
     public double confidenceHi() {
-        return mean() + ((CONFIDENCE_INTERVAL * stddev()) / Math.sqrt(thresholds.length));
+        return mean() + // \n
+                ((CONFIDENCE_INTERVAL * stddev()) / Math.sqrt(thresholds.length));
     }
 }
