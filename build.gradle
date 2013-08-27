@@ -19,6 +19,7 @@ subprojects {
     dependencies {
         compile files("$libDir/classes", "$libDir/algs4.jar", "$libDir/stdlib.jar")
         testCompile "junit:junit:4.10"
+        testCompile "org.assertj:assertj-core:1.3.0"
     }
 
     sourceSets {
