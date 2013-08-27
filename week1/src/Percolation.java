@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 /**
  * Created by david.wursteisen on 26/08/13.
  */
@@ -10,10 +12,10 @@ public class Percolation {
 
     public Percolation(final int N) {
         this.gridSize = N;
-        this.numberOfSites = (gridSize * gridSize) + 2;
+        this.numberOfSites = (gridSize * gridSize) + 1 + gridSize;
         this.sites = new boolean[numberOfSites];
         this.sites[0] = true; // top site
-        this.sites[numberOfSites - 1] = true; // bottom site
+        Arrays.fill(this.sites, gridSize * gridSize + 1, numberOfSites, true); // bottom site
         this.engine = new WeightedQuickUnionUF(numberOfSites);
     }
 
@@ -42,7 +44,11 @@ public class Percolation {
     }
 
     public boolean percolates() {
-        return engine.connected(0, numberOfSites - 1);
+        boolean isPercolates = false;
+        for (int index = 0; index < gridSize; index++) {
+            isPercolates |= engine.connected(0, index + gridSize * gridSize + 1);
+        }
+        return isPercolates;
     }
 
     private void checkCoordinatesAreValid(final int i, final int j) {
@@ -58,8 +64,8 @@ public class Percolation {
     private int getGroupsIndex(final int i, final int j) {
         if (i == 0) {
             return 0;
-        } else if (i == gridSize + 1) {
-            return (gridSize * gridSize) + 1;
+        } else if (i == gridSize + 1 && isValidIndex(j)) {
+            return (gridSize * gridSize) + j;
         }
 
         if (!isValidIndex(i) || !(isValidIndex(j))) {

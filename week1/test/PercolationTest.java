@@ -35,16 +35,16 @@ public class PercolationTest {
 //        assertEquals(6, percolation.getGroupsIndex(1, 2));
 //        assertEquals(7, percolation.getGroupsIndex(2, 2));
 //    }
-
+//
 //    @Test
 //    public void should_get_groups_index_for_top_and_bottom_row() {
 //        assertEquals(0, percolation.getGroupsIndex(0, 0));
 //        assertEquals(0, percolation.getGroupsIndex(0, 1));
 //        assertEquals(0, percolation.getGroupsIndex(0, 2));
-//        assertEquals((5 * 5) + 1, percolation.getGroupsIndex(6, 0));
+//        assertEquals(-1, percolation.getGroupsIndex(6, 0));
 //        assertEquals((5 * 5) + 1, percolation.getGroupsIndex(6, 1));
-//        assertEquals((5 * 5) + 1, percolation.getGroupsIndex(6, 2));
-//        assertEquals((5 * 5) + 1, percolation.getGroupsIndex(6, 3));
+//        assertEquals((5 * 5) + 2, percolation.getGroupsIndex(6, 2));
+//        assertEquals((5 * 5) + 3, percolation.getGroupsIndex(6, 3));
 //    }
 
     @Test
@@ -75,5 +75,26 @@ public class PercolationTest {
         assertFalse(percolation.percolates());
         percolation.open(5, 1);
         assertTrue(percolation.percolates());
+    }
+
+    @Test
+    public void should_manage_backwash_percolate() {
+        percolation.open(1, 1);
+        percolation.open(2, 1);
+        percolation.open(3, 1);
+        percolation.open(4, 1);
+        percolation.open(5, 1);
+        assertTrue(percolation.percolates());
+        percolation.open(5, 5);
+        assertFalse(percolation.isFull(5, 5));
+        percolation.open(5, 4);
+        assertFalse(percolation.isFull(5, 5));
+        assertFalse(percolation.isFull(5, 4));
+
+        percolation.open(5, 3);
+        percolation.open(5, 2);
+        percolation.open(5, 1);
+        assertTrue(percolation.isFull(5, 4));
+        assertTrue(percolation.isFull(5, 5));
     }
 }
