@@ -5,7 +5,7 @@ import java.util.Locale;
  */
 public class PercolationStats {
 
-    public static final double CONFIDENCE_INTERVAL = 1.96;
+    private static final double CONFIDENCE_INTERVAL = 1.96;
     private final double[] thresholds;
 
     // perform T independent computational experiments on an N-by-N grid

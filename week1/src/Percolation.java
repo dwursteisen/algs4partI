@@ -2,7 +2,7 @@
  * Created by david.wursteisen on 26/08/13.
  */
 public class Percolation {
-    public static final int INVALID_INDEX = -1;
+    private static final int INVALID_INDEX = -1;
     private final int gridSize;
     private final boolean[] sites;
     private final WeightedQuickUnionUF engine;
@@ -55,7 +55,7 @@ public class Percolation {
         return (index > 0) && (index <= gridSize);
     }
 
-    int getGroupsIndex(final int i, final int j) {
+    private int getGroupsIndex(final int i, final int j) {
         if (i == 0) {
             return 0;
         } else if (i == gridSize + 1) {
@@ -68,7 +68,7 @@ public class Percolation {
         return i + gridSize * (j - 1);
     }
 
-    public int[] getNeightBoors(final int i, final int j) {
+    private int[] getNeightBoors(final int i, final int j) {
         int[] neightboors = new int[4];
         neightboors[0] = getGroupsIndex(i - 1, j);
         neightboors[1] = getGroupsIndex(i, j - 1);

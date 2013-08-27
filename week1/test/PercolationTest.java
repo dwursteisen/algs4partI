@@ -1,8 +1,6 @@
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
@@ -30,24 +28,24 @@ public class PercolationTest {
 
     }
 
-    @Test
-    public void should_get_groups_index() {
-        assertEquals(1, percolation.getGroupsIndex(1, 1));
-        assertEquals(2, percolation.getGroupsIndex(2, 1));
-        assertEquals(6, percolation.getGroupsIndex(1, 2));
-        assertEquals(7, percolation.getGroupsIndex(2, 2));
-    }
+//    @Test
+//    public void should_get_groups_index() {
+//        assertEquals(1, percolation.getGroupsIndex(1, 1));
+//        assertEquals(2, percolation.getGroupsIndex(2, 1));
+//        assertEquals(6, percolation.getGroupsIndex(1, 2));
+//        assertEquals(7, percolation.getGroupsIndex(2, 2));
+//    }
 
-    @Test
-    public void should_get_groups_index_for_top_and_bottom_row() {
-        assertEquals(0, percolation.getGroupsIndex(0, 0));
-        assertEquals(0, percolation.getGroupsIndex(0, 1));
-        assertEquals(0, percolation.getGroupsIndex(0, 2));
-        assertEquals((5 * 5) + 1, percolation.getGroupsIndex(6, 0));
-        assertEquals((5 * 5) + 1, percolation.getGroupsIndex(6, 1));
-        assertEquals((5 * 5) + 1, percolation.getGroupsIndex(6, 2));
-        assertEquals((5 * 5) + 1, percolation.getGroupsIndex(6, 3));
-    }
+//    @Test
+//    public void should_get_groups_index_for_top_and_bottom_row() {
+//        assertEquals(0, percolation.getGroupsIndex(0, 0));
+//        assertEquals(0, percolation.getGroupsIndex(0, 1));
+//        assertEquals(0, percolation.getGroupsIndex(0, 2));
+//        assertEquals((5 * 5) + 1, percolation.getGroupsIndex(6, 0));
+//        assertEquals((5 * 5) + 1, percolation.getGroupsIndex(6, 1));
+//        assertEquals((5 * 5) + 1, percolation.getGroupsIndex(6, 2));
+//        assertEquals((5 * 5) + 1, percolation.getGroupsIndex(6, 3));
+//    }
 
     @Test
     public void should_be_full() {
@@ -59,11 +57,11 @@ public class PercolationTest {
         assertFalse(percolation.isFull(3, 2));
     }
 
-    @Test
-    public void should_get_neightboors() {
-        int[] neightBoors = percolation.getNeightBoors(1, 1);
-        assertThat(neightBoors).containsOnly(0, -1, 2, 6);
-    }
+//    @Test
+//    public void should_get_neightboors() {
+//        int[] neightBoors = percolation.getNeightBoors(1, 1);
+//        assertThat(neightBoors).containsOnly(0, -1, 2, 6);
+//    }
 
     @Test
     public void should_percolate() {
