@@ -45,7 +45,7 @@ public class Percolation {
 
     public boolean percolates() {
         boolean isPercolates = false;
-        for (int index = 0; index < gridSize; index++) {
+        for (int index = 0; !isPercolates && index < gridSize; index++) {
             isPercolates |= engine.connected(0, index + gridSize * gridSize + 1);
         }
         return isPercolates;
