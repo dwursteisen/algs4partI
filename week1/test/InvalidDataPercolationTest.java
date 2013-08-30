@@ -1,3 +1,6 @@
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
+
 import java.util.Arrays;
 import java.util.Collection;
 
@@ -25,24 +28,37 @@ public class InvalidDataPercolationTest {
         return Arrays.asList(data);
     }
 
-    @Test(expected = IndexOutOfBoundsException.class)
+    @Test
     public void should_throw_indexoutofbound_exception_when_i_or_j_outside_the_range_with_open() {
-        Percolation percolation = new Percolation(100);
-        percolation.open(i, j);
+        try {
+            Percolation percolation = new Percolation(100);
+            percolation.open(i, j);
+            fail("An IndexOutOfBoundsException should be trigerred !");
+        } catch (IndexOutOfBoundsException ex) {
+            assertTrue(true);
+        }
     }
 
-    @Test(expected = IndexOutOfBoundsException.class)
+    @Test
     public void should_throw_indexoutofbound_exception_when_i_or_j_outside_the_range_with_isOpen() {
-        Percolation percolation = new Percolation(100);
-        percolation.isOpen(i, j);
-
+        try {
+            Percolation percolation = new Percolation(100);
+            percolation.isOpen(i, j);
+            fail("An IndexOutOfBoundsException should be trigerred !");
+        } catch (IndexOutOfBoundsException ex) {
+            assertTrue(true);
+        }
     }
 
-    @Test(expected = IndexOutOfBoundsException.class)
+    @Test
     public void should_throw_indexoutofbound_exception_when_i_or_j_outside_the_range_with_isFull() {
-        Percolation percolation = new Percolation(100);
-        percolation.isFull(i, j);
-
+        try {
+            Percolation percolation = new Percolation(100);
+            percolation.isFull(i, j);
+            fail("An IndexOutOfBoundsException should be trigerred !");
+        } catch (IndexOutOfBoundsException ex) {
+            assertTrue(true);
+        }
     }
 
 }
