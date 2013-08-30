@@ -76,4 +76,26 @@ public class PercolationTest {
         percolation.open(5, 1);
         assertTrue(percolation.percolates());
     }
+
+    @Test
+    public void should_manage_backwash_percolate() {
+        percolation.open(1, 1);
+        percolation.open(2, 1);
+        percolation.open(3, 1);
+        percolation.open(4, 1);
+        percolation.open(5, 1);
+        assertTrue(percolation.percolates());
+        percolation.open(5, 5);
+        assertFalse(percolation.isFull(5, 5));
+        percolation.open(5, 4);
+        assertFalse(percolation.isFull(5, 5));
+        assertFalse(percolation.isFull(5, 4));
+
+        percolation.open(5, 3);
+        percolation.open(5, 2);
+        percolation.open(5, 1);
+        assertTrue(percolation.isFull(5, 4));
+        assertTrue(percolation.isFull(5, 5));
+    }
+
 }

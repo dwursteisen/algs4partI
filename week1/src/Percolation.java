@@ -6,6 +6,7 @@ public class Percolation {
     private final int gridSize;
     private final boolean[] sites;
     private final WeightedQuickUnionUF engine;
+    private final WeightedQuickUnionUF engineToTop;
     private final int numberOfSites;
 
     public Percolation(final int N) {
@@ -15,18 +16,23 @@ public class Percolation {
         this.sites[0] = true; // top site
         this.sites[numberOfSites - 1] = true; // bottom site
         this.engine = new WeightedQuickUnionUF(numberOfSites);
+        this.engineToTop = new WeightedQuickUnionUF(numberOfSites);
     }
 
     public void open(int i, int j) {
         checkCoordinatesAreValid(i, j);
-        sites[getGroupsIndex(i, j)] = true;
+        int siteIndex = getGroupsIndex(i, j);
+        sites[siteIndex] = true;
         int[] neightBoors = getNeightBoors(i, j);
         for (int neightBoor : neightBoors) {
             if (neightBoor == INVALID_INDEX) {
                 continue;
             }
             if (this.sites[neightBoor]) {
-                engine.union(getGroupsIndex(i, j), neightBoor);
+                engine.union(siteIndex, neightBoor);
+                if(neightBoor != sites.length - 1) {
+                    engineToTop.union(siteIndex, neightBoor);
+                }
             }
         }
     }
@@ -38,7 +44,7 @@ public class Percolation {
 
     public boolean isFull(int i, int j) {
         checkCoordinatesAreValid(i, j);
-        return engine.connected(0, getGroupsIndex(i, j));
+        return engineToTop.connected(0, getGroupsIndex(i, j));
     }
 
     public boolean percolates() {
