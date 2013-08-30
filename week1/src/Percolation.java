@@ -30,7 +30,7 @@ public class Percolation {
             }
             if (this.sites[neightBoor]) {
                 engine.union(siteIndex, neightBoor);
-                if(neightBoor != sites.length - 1) {
+                if (neightBoor != sites.length - 1) {
                     engineToTop.union(siteIndex, neightBoor);
                 }
             }
