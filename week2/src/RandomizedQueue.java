@@ -9,7 +9,7 @@ import java.util.NoSuchElementException;
  * Time: 23:01
  * To change this template use File | Settings | File Templates.
  */
-public class RandomizedQueue<ITEM_TYPE> implements Iterable<ITEM_TYPE> {
+public class RandomizedQueue<Item> implements Iterable<Item> {
     private Object[] items = new Object[5];
     private int size = 0;
 
@@ -28,7 +28,7 @@ public class RandomizedQueue<ITEM_TYPE> implements Iterable<ITEM_TYPE> {
     }
 
     // add the item
-    public void enqueue(ITEM_TYPE item) {
+    public void enqueue(Item item) {
         checkIsNull(item);
         items[size++] = item;
         if (items.length != size) {
@@ -37,25 +37,25 @@ public class RandomizedQueue<ITEM_TYPE> implements Iterable<ITEM_TYPE> {
         items = Arrays.copyOf(items, size * 2);
     }
 
-    private void checkIsNull(ITEM_TYPE item) {
+    private void checkIsNull(Item item) {
         if (item == null) {
             throw new NullPointerException();
         }
     }
 
     // delete and return a random item
-    public ITEM_TYPE dequeue() {
+    public Item dequeue() {
         checkIsEmpty();
         if (items.length >= size * 4) {
             items = Arrays.copyOf(items, size * 2);
         }
-        return (ITEM_TYPE) items[StdRandom.uniform(size--)];
+        return (Item) items[StdRandom.uniform(size--)];
     }
 
     // return (but do not delete) a random item
-    public ITEM_TYPE sample() {
+    public Item sample() {
         checkIsEmpty();
-        return (ITEM_TYPE) items[StdRandom.uniform(size)];
+        return (Item) items[StdRandom.uniform(size)];
     }
 
     private void checkIsEmpty() {
@@ -65,11 +65,11 @@ public class RandomizedQueue<ITEM_TYPE> implements Iterable<ITEM_TYPE> {
     }
 
     // return an independent iterator over items in random order
-    public Iterator<ITEM_TYPE> iterator() {
+    public Iterator<Item> iterator() {
         return new RandomIterator(items);
     }
 
-    private class RandomIterator implements Iterator<ITEM_TYPE> {
+    private class RandomIterator implements Iterator<Item> {
 
         private Object[] items;
         private int current = 0;
@@ -85,8 +85,8 @@ public class RandomizedQueue<ITEM_TYPE> implements Iterable<ITEM_TYPE> {
         }
 
         @Override
-        public ITEM_TYPE next() {
-            return (ITEM_TYPE) items[current++];
+        public Item next() {
+            return (Item) items[current++];
         }
 
         @Override
