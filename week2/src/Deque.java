@@ -81,7 +81,7 @@ public class Deque<ITEM_TYPE> implements Iterable<ITEM_TYPE> {
 
     // return an iterator over items in order from front to end
     public Iterator<ITEM_TYPE> iterator() {
-        return new DequeIterator();
+        return new DequeIterator(head);
     }
 
     private static class Node<E> {
@@ -106,14 +106,24 @@ public class Deque<ITEM_TYPE> implements Iterable<ITEM_TYPE> {
 
     private class DequeIterator implements Iterator<ITEM_TYPE> {
 
+        private Node<ITEM_TYPE> current;
+        public DequeIterator(Node<ITEM_TYPE> head) {
+            current = head;
+        }
+
         @Override
         public boolean hasNext() {
-            return false;  //To change body of implemented methods use File | Settings | File Templates.
+            return current != null && current.next != null;
         }
 
         @Override
         public ITEM_TYPE next() {
-            throw new NoSuchElementException("No more item");
+            if(current == null) {
+                throw new NoSuchElementException("No more item");
+            }
+            ITEM_TYPE item = current.item;
+            current = current.next;
+            return item;
         }
 
         @Override

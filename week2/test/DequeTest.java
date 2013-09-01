@@ -1,5 +1,6 @@
 import org.junit.Test;
 
+import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 import static org.junit.Assert.*;
@@ -71,5 +72,21 @@ public class DequeTest {
     public void should_throw_unsupported_operation_on_remove_iterator() {
         new Deque<String>().iterator().remove();
     }
+
+    @Test
+    public void should_iterate_over() {
+        Deque<String> deque = new Deque<String>();
+        deque.addFirst("hello");
+        deque.addLast("world");
+        deque.addLast(" ! ");
+
+        Iterator<String> iterator = deque.iterator();
+        assertTrue(iterator.hasNext());
+        assertEquals("hello", iterator.next());
+        assertEquals("world", iterator.next());
+        assertEquals(" ! ", iterator.next());
+        assertFalse(iterator.hasNext());
+    }
+
 
 }
