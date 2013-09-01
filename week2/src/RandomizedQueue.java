@@ -10,7 +10,7 @@ import java.util.NoSuchElementException;
  * To change this template use File | Settings | File Templates.
  */
 public class RandomizedQueue<ITEM_TYPE> implements Iterable<ITEM_TYPE> {
-    private  Object[] items = new Object[5];
+    private Object[] items = new Object[5];
     private int size = 0;
 
     // construct an empty randomized queue
@@ -31,14 +31,14 @@ public class RandomizedQueue<ITEM_TYPE> implements Iterable<ITEM_TYPE> {
     public void enqueue(ITEM_TYPE item) {
         checkIsNull(item);
         items[size++] = item;
-        if(items.length != size) {
+        if (items.length != size) {
             return;
         }
         items = Arrays.copyOf(items, size * 2);
     }
 
     private void checkIsNull(ITEM_TYPE item) {
-        if(item == null) {
+        if (item == null) {
             throw new NullPointerException();
         }
     }
@@ -46,7 +46,7 @@ public class RandomizedQueue<ITEM_TYPE> implements Iterable<ITEM_TYPE> {
     // delete and return a random item
     public ITEM_TYPE dequeue() {
         checkIsEmpty();
-        if(items.length >= size * 4) {
+        if (items.length >= size * 4) {
             items = Arrays.copyOf(items, size * 2);
         }
         return (ITEM_TYPE) items[StdRandom.uniform(size--)];
@@ -59,7 +59,7 @@ public class RandomizedQueue<ITEM_TYPE> implements Iterable<ITEM_TYPE> {
     }
 
     private void checkIsEmpty() {
-        if(isEmpty()) {
+        if (isEmpty()) {
             throw new NoSuchElementException();
         }
     }
@@ -78,6 +78,7 @@ public class RandomizedQueue<ITEM_TYPE> implements Iterable<ITEM_TYPE> {
             this.items = Arrays.copyOf(items, size);
             StdRandom.shuffle(this.items);
         }
+
         @Override
         public boolean hasNext() {
             return current < this.items.length;

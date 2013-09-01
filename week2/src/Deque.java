@@ -39,7 +39,7 @@ public class Deque<ITEM_TYPE> implements Iterable<ITEM_TYPE> {
     public void addFirst(ITEM_TYPE item) {
         checkIfNull(item);
         head = new Node<ITEM_TYPE>(item).switchWith(null, head);
-        if(tail == null) {
+        if (tail == null) {
             tail = head;
         }
         size++;
@@ -49,7 +49,7 @@ public class Deque<ITEM_TYPE> implements Iterable<ITEM_TYPE> {
     public void addLast(ITEM_TYPE item) {
         checkIfNull(item);
         tail = new Node<ITEM_TYPE>(item).switchWith(tail, null);
-        if(head == null) {
+        if (head == null) {
             head = tail;
         }
         size++;
@@ -85,20 +85,22 @@ public class Deque<ITEM_TYPE> implements Iterable<ITEM_TYPE> {
     }
 
     private static class Node<E> {
-        E item;
-        Node<E> next;
-        Node<E> prev;
+        private E item;
+        private Node<E> next;
+        private Node<E> prev;
 
-        Node(E element) {
+        private Node(E element) {
             this.item = element;
         }
 
-        Node<E> switchWith(Node<E> prev, Node<E> next) {
-            if (prev != null) {
-                prev.next = this;
+        private Node<E> switchWith(Node<E> p, Node<E> n) {
+            prev = p;
+            if (p != null) {
+                p.next = this;
             }
-            if (next != null) {
-                next.prev = this;
+            next = n;
+            if (n != null) {
+                n.prev = this;
             }
             return this;
         }
@@ -107,6 +109,7 @@ public class Deque<ITEM_TYPE> implements Iterable<ITEM_TYPE> {
     private class DequeIterator implements Iterator<ITEM_TYPE> {
 
         private Node<ITEM_TYPE> current;
+
         public DequeIterator(Node<ITEM_TYPE> head) {
             current = head;
         }
@@ -118,7 +121,7 @@ public class Deque<ITEM_TYPE> implements Iterable<ITEM_TYPE> {
 
         @Override
         public ITEM_TYPE next() {
-            if(current == null) {
+            if (current == null) {
                 throw new NoSuchElementException("No more item");
             }
             ITEM_TYPE item = current.item;
