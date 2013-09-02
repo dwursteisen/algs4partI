@@ -115,4 +115,16 @@ public class DequeTest {
         assertTrue(deque.isEmpty());
     }
 
+    @Test
+    public void should_add_then_remove() {
+        Deque<String> deque = new Deque<String>();
+        deque.addFirst("hello");
+        assertFalse(deque.isEmpty());
+        deque.addLast("world");
+        assertFalse(deque.isEmpty());
+        deque.removeFirst();
+        assertFalse(deque.isEmpty());
+        deque.removeLast();
+        assertTrue(deque.isEmpty());
+    }
 }
