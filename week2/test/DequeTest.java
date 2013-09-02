@@ -89,4 +89,30 @@ public class DequeTest {
     }
 
 
+    @Test
+    public void should_add_first_and_remove_last() {
+        Deque<String> deque = new Deque<String>();
+        deque.addFirst("hello");
+        deque.removeLast();
+        assertEquals(0, deque.size());
+        assertTrue(deque.isEmpty());
+
+        deque.addFirst("hello");
+        deque.addFirst("hello");
+        deque.addFirst("hello");
+        deque.addFirst("hello");
+        deque.addFirst("hello");
+        deque.addFirst("hello");
+        assertFalse(deque.isEmpty());
+
+        deque.removeLast();
+        deque.removeLast();
+        deque.removeLast();
+        deque.removeLast();
+        deque.removeLast();
+        assertFalse(deque.isEmpty());
+        deque.removeLast();
+        assertTrue(deque.isEmpty());
+    }
+
 }
