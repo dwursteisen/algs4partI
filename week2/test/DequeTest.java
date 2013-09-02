@@ -127,4 +127,18 @@ public class DequeTest {
         deque.removeLast();
         assertTrue(deque.isEmpty());
     }
+
+    @Test
+    public void should_check_iterator_with_remove() {
+        Deque<String> deque = new Deque<String>();
+        deque.addFirst("hello");
+        deque.addLast("world");
+        deque.removeFirst();
+
+        Iterator<String> iterator = deque.iterator();
+        assertTrue(iterator.hasNext());
+        iterator.next();
+        assertFalse(iterator.hasNext());
+    }
+
 }
