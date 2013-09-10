@@ -1,16 +1,16 @@
-import org.junit.Test;
-
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
+import java.util.Set;
 
-import static org.junit.Assert.*;
+import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 /**
- * Created with IntelliJ IDEA.
- * User: david
- * Date: 01/09/13
- * Time: 23:06
- * To change this template use File | Settings | File Templates.
+ * Created with IntelliJ IDEA. User: david Date: 01/09/13 Time: 23:06 To change this template use File | Settings | File Templates.
  */
 public class RandomizedQueueTest {
 
@@ -75,6 +75,25 @@ public class RandomizedQueueTest {
         queue.enqueue("1");
         assertEquals("1", queue.dequeue());
         assertTrue(queue.isEmpty());
+    }
+
+    @Test
+    public void should_dequeue_random_item() {
+        Set<String> result = new HashSet<String>();
+        for (int i = 0; i < 50; i++) {
+            RandomizedQueue<String> queue = new RandomizedQueue<String>();
+            queue.enqueue("1");
+            queue.enqueue("2");
+            queue.enqueue("3");
+
+            queue.dequeue();
+
+            for (int j = 0; j < 10; j++) {
+                result.add(queue.sample());
+            }
+        }
+
+        assertTrue(result.contains("3"));
     }
 
     @Test

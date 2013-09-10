@@ -3,11 +3,7 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 /**
- * Created with IntelliJ IDEA.
- * User: david
- * Date: 01/09/13
- * Time: 23:01
- * To change this template use File | Settings | File Templates.
+ * Created with IntelliJ IDEA. User: david Date: 01/09/13 Time: 23:01 To change this template use File | Settings | File Templates.
  */
 public class RandomizedQueue<Item> implements Iterable<Item> {
     private Object[] items = new Object[5];
@@ -49,7 +45,10 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
         if (items.length >= size * 4) {
             items = Arrays.copyOf(items, size * 2);
         }
-        return (Item) items[StdRandom.uniform(size--)];
+        int index = StdRandom.uniform(size--);
+        Item toReturn = (Item) items[index];
+        items[index] = items[size]; // swap & remove value
+        return toReturn;
     }
 
     // return (but do not delete) a random item
