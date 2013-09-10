@@ -107,4 +107,14 @@ public class RandomizedQueueTest {
         assertFalse(iterator.hasNext());
     }
 
+
+    @Test(expected = NoSuchElementException.class)
+    public void should_throw_no_such_element() {
+        RandomizedQueue<String> queue = new RandomizedQueue<String>();
+        queue.enqueue("1");
+        Iterator<String> iter = queue.iterator();
+        iter.next();
+        iter.next();
+    }
+
 }
