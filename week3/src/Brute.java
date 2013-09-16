@@ -11,6 +11,10 @@ public class Brute {
     private final List<Point> points = new ArrayList<Point>();
     private final String filename;
 
+    public Brute() {
+        this.filename = null;
+    }
+
     private Brute(final String filename) {
         this.filename = filename;
         StdDraw.setXscale(0, 32768);
