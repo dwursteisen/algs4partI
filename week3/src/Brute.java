@@ -8,29 +8,15 @@ import java.util.List;
  */
 public class Brute {
 
-    private final List<Point> points = new ArrayList<Point>();
-    private final String filename;
-
-    public Brute() {
-        this.filename = null;
-    }
-
-    private Brute(final String filename) {
-        this.filename = filename;
+    public static void main(String[] args) {
         StdDraw.setXscale(0, 32768);
         StdDraw.setYscale(0, 32768);
+
+        List<Point> points = readInputFile(args[0]);
+        print(points);
     }
 
-    public static void main(String[] args) {
-        new Brute(args[0]).read().andPrint();
-    }
-
-    private Brute read() {
-        points.addAll(readInputFile(filename));
-        return this;
-    }
-
-    private Brute andPrint() {
+    private static void print(List<Point> points) {
 
         int N = points.size();
         List<Point> pointsSloped = new ArrayList<Point>(4);
@@ -61,10 +47,9 @@ public class Brute {
             }
 
         }
-        return this;
     }
 
-    private List<Point> readInputFile(final String filename) {
+    private static List<Point> readInputFile(final String filename) {
         // read in the input
         In in = new In(filename);
         int N = in.readInt();
