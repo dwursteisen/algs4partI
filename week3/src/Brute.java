@@ -54,6 +54,7 @@ public class Brute {
                         points.get(i).drawTo(points.get(j));
                         points.get(j).drawTo(points.get(k));
                         points.get(k).drawTo(points.get(l));
+                        pointsSloped.clear();
 
                     }
                 }
